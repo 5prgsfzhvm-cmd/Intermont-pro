@@ -6,127 +6,180 @@
 <title>Intermont</title>
 
 <style>
-body { margin:0; font-family:Arial; background:#f4f6f8; }
+body { margin:0; font-family:Arial; background:#f4f6f8; transition:0.3s; }
+
+/* DARK MODE */
+.dark {
+  background:#0b0f14;
+  color:white;
+}
+.dark header { background:#111; }
+.dark .card { background:#1a1a1a; color:white; }
 
 /* HEADER */
 header {
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:15px 30px;
+  padding:15px 20px;
   background:white;
-  box-shadow:0 2px 5px rgba(0,0,0,0.1);
 }
 
 .logo {
-  font-size:26px;
+  font-size:22px;
   font-weight:bold;
 }
 .logo span { color:#0a84ff; }
 
+.menu-toggle {
+  font-size:26px;
+  cursor:pointer;
+  display:none;
+}
+
+nav {
+  display:flex;
+  gap:20px;
+}
 nav a {
-  margin:0 15px;
   text-decoration:none;
   color:#333;
   font-weight:bold;
 }
 
+/* MOBILE */
+@media(max-width:768px){
+  nav {
+    position:absolute;
+    top:60px;
+    left:0;
+    width:100%;
+    background:white;
+    flex-direction:column;
+    display:none;
+  }
+  nav.active { display:flex; }
+  .menu-toggle { display:block; }
+}
+
 /* HERO */
 .hero {
   position:relative;
-  height:450px;
-  overflow:hidden;
+  height:400px;
 }
 
-.slide {
-  position:absolute;
-  width:100%;
-  height:100%;
-  opacity:0;
-  transition:1s;
-}
-.slide.active { opacity:1; }
-
-.slide img {
+.hero img {
   width:100%;
   height:100%;
   object-fit:cover;
 }
 
-/* overlay */
 .overlay {
   position:absolute;
   width:100%;
   height:100%;
-  background:rgba(0,0,0,0.55);
+  background:rgba(0,0,0,0.6);
 }
 
-/* TEXT LEFT */
 .hero-content {
   position:absolute;
   top:50%;
   left:10%;
   transform:translateY(-50%);
   color:white;
-  max-width:500px;
 }
 
-.hero-content h1 {
-  font-size:40px;
-  margin-bottom:10px;
-}
-
-.hero-content p {
-  margin:5px 0;
-}
-
-/* BUTTONS */
+/* BUTTON */
 .btn {
   display:inline-block;
-  margin-top:15px;
-  padding:12px 20px;
-  border-radius:8px;
+  padding:10px 18px;
+  margin-top:10px;
+  border-radius:6px;
   text-decoration:none;
   color:white;
-  font-weight:bold;
 }
-
 .call { background:#0a84ff; }
 .whatsapp { background:#25D366; }
 
 /* CARDS */
-.section {
-  padding:50px 20px;
-  max-width:1100px;
-  margin:auto;
-}
+.section { padding:40px 20px; }
 
 .cards {
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:25px;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
 }
 
 .card {
   background:white;
-  border-radius:12px;
+  border-radius:10px;
   overflow:hidden;
-  box-shadow:0 5px 15px rgba(0,0,0,0.1);
+  cursor:pointer;
+  transition:0.3s;
 }
+.card:hover { transform:scale(1.03); }
 
 .card img {
   width:100%;
-  height:200px;
+  height:180px;
   object-fit:cover;
 }
 
-.card-content {
-  padding:15px;
+/* MODAL */
+.modal {
+  display:none;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.8);
 }
 
+.modal-content {
+  background:white;
+  margin:10% auto;
+  padding:20px;
+  width:90%;
+  max-width:600px;
+}
+.modal img {
+  width:100%;
+  margin-top:10px;
+}
+
+/* ANIMACIJA */
+.fade {
+  opacity:0;
+  transform:translateY(30px);
+  transition:1s;
+}
+.fade.show {
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* FLOAT BUTTONS */
+.float {
+  position:fixed;
+  right:15px;
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:white;
+  font-size:22px;
+  text-decoration:none;
+}
+.call-btn { bottom:80px; background:#0a84ff; }
+.wa-btn { bottom:20px; background:#25D366; }
+
+/* FOOTER */
 footer {
   text-align:center;
-  padding:20px;
+  padding:15px;
   background:#0b0f14;
   color:#aaa;
 }
@@ -136,8 +189,14 @@ footer {
 <body>
 
 <header>
-  <div class="logo">INTER<span>MONT</span></div>
-  <nav>
+  <div class="logo">⚡ INTER<span>MONT</span></div>
+
+  <div>
+    <button onclick="toggleDark()">🌙</button>
+    <span class="menu-toggle" onclick="toggleMenu()">☰</span>
+  </div>
+
+  <nav id="menu">
     <a href="#">Početna</a>
     <a href="#usluge">Usluge</a>
     <a href="#kontakt">Kontakt</a>
@@ -146,93 +205,127 @@ footer {
   </nav>
 </header>
 
+<!-- HERO -->
 <div class="hero">
-
-  <div class="slide active">
-    <img src="https://images.unsplash.com/photo-1581092921461-eab62e97a780">
-  </div>
-
-  <div class="slide">
-    <img src="https://images.unsplash.com/photo-1621905251918-48416bd8575a">
-  </div>
-
-  <div class="slide">
-    <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc">
-  </div>
-
+  <img src="https://images.unsplash.com/photo-1581092921461-eab62e97a780">
   <div class="overlay"></div>
 
   <div class="hero-content">
-    <h1>Profesionalne elektro usluge</h1>
-    <p>5 godina iskustva – brzo i pouzdano</p>
+    <h1>Elektro usluge</h1>
+    <p>5 godina iskustva</p>
     <p><b>Direktor: Nikola Stošić</b></p>
 
     <a href="tel:+38664139333" class="btn call">Pozovi</a>
     <a href="https://wa.me/38664139333" class="btn whatsapp">WhatsApp</a>
   </div>
-
 </div>
 
-<section id="usluge" class="section">
-<h2>Naše usluge</h2>
+<!-- USLUGE -->
+<section id="usluge" class="section fade">
+<h2>Usluge</h2>
 
 <div class="cards">
 
-<div class="card">
+<div class="card" onclick="openModal('kuca')">
 <img src="https://images.unsplash.com/photo-1581091215367-59ab6b3f6e0f">
-<div class="card-content">
 <h3>Kućne instalacije</h3>
-<p>Kompletna izrada i zamjena instalacija</p>
-</div>
 </div>
 
-<div class="card">
+<div class="card" onclick="openModal('kvar')">
 <img src="https://images.unsplash.com/photo-1603791440384-56cd371ee9a7">
-<div class="card-content">
 <h3>Popravke kvarova</h3>
-<p>Brza intervencija</p>
-</div>
 </div>
 
-<div class="card">
+<div class="card" onclick="openModal('led')">
 <img src="https://images.unsplash.com/photo-1509395176047-4a66953fd231">
-<div class="card-content">
 <h3>LED rasvjeta</h3>
-<p>Moderna i štedljiva rješenja</p>
-</div>
 </div>
 
 </div>
 </section>
 
-<section id="kontakt" class="section">
+<!-- MODAL -->
+<div id="modal" class="modal" onclick="closeModal()">
+  <div class="modal-content" id="modalContent"></div>
+</div>
+
+<!-- KONTAKT -->
+<section id="kontakt" class="section fade">
 <h2>Kontakt</h2>
-<p>Telefon: +386 64 139 333</p>
+<p>+386 64 139 333</p>
 </section>
 
-<section id="lokacija" class="section">
+<section id="lokacija" class="section fade">
 <h2>Lokacija</h2>
 <iframe src="https://maps.google.com/maps?q=Ptuj&t=&z=13&ie=UTF8&iwloc=&output=embed" width="100%" height="250"></iframe>
 </section>
 
-<section id="radnici" class="section">
+<section id="radnici" class="section fade">
 <h2>Radnici</h2>
-<p>Stručni tim električara</p>
+<p>Profesionalni tim električara</p>
 </section>
 
 <footer>
-<p>© 2026 Intermont</p>
+© 2026 Intermont
 </footer>
 
-<script>
-let slides = document.querySelectorAll(".slide");
-let index = 0;
+<!-- FLOAT -->
+<a href="tel:+38664139333" class="float call-btn">📞</a>
+<a href="https://wa.me/38664139333" class="float wa-btn">💬</a>
 
-setInterval(() => {
-  slides[index].classList.remove("active");
-  index = (index + 1) % slides.length;
-  slides[index].classList.add("active");
-}, 3000);
+<script>
+function toggleMenu(){
+  document.getElementById("menu").classList.toggle("active");
+}
+
+function toggleDark(){
+  document.body.classList.toggle("dark");
+}
+
+function openModal(type){
+  let content = "";
+
+  if(type==="kuca"){
+    content = `
+    <h2>Kućne instalacije</h2>
+    <img src="https://images.unsplash.com/photo-1581091215367-59ab6b3f6e0f">
+    <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4">
+    `;
+  }
+
+  if(type==="kvar"){
+    content = `
+    <h2>Popravke kvarova</h2>
+    <img src="https://images.unsplash.com/photo-1603791440384-56cd371ee9a7">
+    `;
+  }
+
+  if(type==="led"){
+    content = `
+    <h2>LED rasvjeta</h2>
+    <img src="https://images.unsplash.com/photo-1509395176047-4a66953fd231">
+    `;
+  }
+
+  document.getElementById("modalContent").innerHTML = content;
+  document.getElementById("modal").style.display="block";
+}
+
+function closeModal(){
+  document.getElementById("modal").style.display="none";
+}
+
+/* ANIMACIJA */
+let faders = document.querySelectorAll(".fade");
+
+window.addEventListener("scroll", () => {
+  faders.forEach(el => {
+    let top = el.getBoundingClientRect().top;
+    if(top < window.innerHeight - 50){
+      el.classList.add("show");
+    }
+  });
+});
 </script>
 
 </body>
