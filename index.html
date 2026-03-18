@@ -1,26 +1,88 @@
 <!DOCTYPE html>
 <html lang="bs">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Inermont Pro</title>
-  <style>
-    body { font-family: Arial; margin:0; }
-    header { background:#0b0f14; color:#fff; padding:20px; text-align:center; }
-    .logo { font-size:28px; font-weight:bold; }
-    .logo span { color:#0a84ff; }
-    nav { background:#111; padding:12px; text-align:center; }
-    nav a { color:#ddd; margin:12px; text-decoration:none; font-weight:bold; }
-    nav a:hover { color:#fff; }
-    section { padding:30px; }
-    .hero { background:#f4f6f8; text-align:center; padding:60px 20px; }
-    .btn { display:inline-block; background:#0a84ff; color:white; padding:12px 22px; text-decoration:none; border-radius:8px; margin:5px; }
-    .btn.whatsapp { background:#25D366; }
-    .grid { display:grid; grid-template-columns: repeat(auto-fit,minmax(250px,1fr)); gap:15px; }
-    .grid img { width:100%; border-radius:10px; }
-    footer { background:#0b0f14; color:#aaa; text-align:center; padding:15px; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inermont Pro</title>
+
+<style>
+body { font-family: Arial; margin:0; background:#f5f7fa; }
+
+header {
+  background:#0b0f14;
+  color:#fff;
+  padding:20px;
+  text-align:center;
+}
+
+.logo { font-size:28px; font-weight:bold; }
+.logo span { color:#0a84ff; }
+
+.hero {
+  text-align:center;
+  padding:60px 20px;
+  background:linear-gradient(to right,#0a84ff,#003f7f);
+  color:white;
+}
+
+.btn {
+  display:inline-block;
+  margin:10px;
+  padding:12px 22px;
+  background:white;
+  color:#0a84ff;
+  border-radius:8px;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+.section {
+  padding:40px 20px;
+  max-width:1100px;
+  margin:auto;
+}
+
+.cards {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+}
+
+.card {
+  background:white;
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:0 4px 10px rgba(0,0,0,0.1);
+  transition:0.3s;
+}
+
+.card:hover {
+  transform:translateY(-5px);
+}
+
+.card img {
+  width:100%;
+  height:180px;
+  object-fit:cover;
+}
+
+.card-content {
+  padding:15px;
+}
+
+.card h3 {
+  margin:0 0 10px;
+}
+
+footer {
+  background:#0b0f14;
+  color:#aaa;
+  text-align:center;
+  padding:15px;
+}
+</style>
 </head>
+
 <body>
 
 <header>
@@ -28,50 +90,58 @@
   <p>Direktor: Nikola Stošić</p>
 </header>
 
-<nav>
-  <a href="#">Početna</a>
-  <a href="#usluge">Usluge</a>
-  <a href="#galerija">Radovi</a>
-  <a href="#kontakt">Kontakt</a>
-</nav>
-
 <section class="hero">
   <h2>Profesionalne elektro usluge u Ptuju</h2>
-  <p>5 godina iskustva – brzo, sigurno i pouzdano</p>
+  <p>5 godina iskustva – brzo i pouzdano</p>
 
-  <p><b>✔ Dolazak isti dan</b></p>
-  <p><b>✔ Brza intervencija</b></p>
-  <p><b>✔ Garancija na rad</b></p>
-
-  <a href="tel:+38664139333" class="btn">Pozovi: +386 64 139 333</a>
-  <a href="https://wa.me/38664139333" class="btn whatsapp">WhatsApp</a>
+  <a href="tel:+38664139333" class="btn">Pozovi</a>
+  <a href="https://wa.me/38664139333" class="btn">WhatsApp</a>
 </section>
 
-<section id="usluge">
+<section class="section">
   <h2>Naše usluge</h2>
-  <ul>
-    <li>Kućne i poslovne instalacije</li>
-    <li>Otklanjanje kvarova</li>
-    <li>LED rasvjeta i modernizacija</li>
-    <li>Razvodne kutije i osigurači</li>
-    <li>Industrijske instalacije</li>
-  </ul>
-</section>
 
-<section id="galerija">
-  <h2>Naši radovi</h2>
-  <div class="grid">
-    <img src="https://images.unsplash.com/photo-1581091215367-59ab6b3f6e0f">
-    <img src="https://images.unsplash.com/photo-1603791440384-56cd371ee9a7">
-    <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc">
+  <div class="cards">
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1581091215367-59ab6b3f6e0f">
+      <div class="card-content">
+        <h3>Kućne instalacije</h3>
+        <p>Kompletna izrada i zamjena instalacija</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1603791440384-56cd371ee9a7">
+      <div class="card-content">
+        <h3>Popravke kvarova</h3>
+        <p>Brza intervencija i rješavanje problema</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc">
+      <div class="card-content">
+        <h3>LED rasvjeta</h3>
+        <p>Moderna i štedljiva rasvjeta</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64">
+      <div class="card-content">
+        <h3>Razvodne kutije</h3>
+        <p>Sigurna i profesionalna montaža</p>
+      </div>
+    </div>
+
   </div>
 </section>
 
-<section id="kontakt">
+<section class="section">
   <h2>Kontakt</h2>
   <p><b>Telefon:</b> +386 64 139 333</p>
   <p><b>Lokacija:</b> Ptuj</p>
-  <p><b>Email:</b> inermontpro@email.com</p>
 
   <iframe src="https://maps.google.com/maps?q=Ptuj&t=&z=13&ie=UTF8&iwloc=&output=embed" width="100%" height="250"></iframe>
 </section>
