@@ -6,15 +6,7 @@
 <title>Intermont</title>
 
 <style>
-body { margin:0; font-family:Arial; background:#f4f6f8; transition:0.3s; }
-
-/* DARK MODE */
-.dark {
-  background:#0b0f14;
-  color:white;
-}
-.dark header { background:#111; }
-.dark .card { background:#1a1a1a; color:white; }
+body { margin:0; font-family:Arial; background:#f4f6f8; }
 
 /* HEADER */
 header {
@@ -23,29 +15,18 @@ header {
   align-items:center;
   padding:15px 20px;
   background:white;
+  position:sticky;
+  top:0;
+  z-index:1000;
 }
 
-.logo {
-  font-size:22px;
-  font-weight:bold;
-}
+.logo { font-weight:bold; font-size:22px; }
 .logo span { color:#0a84ff; }
 
-.menu-toggle {
-  font-size:26px;
-  cursor:pointer;
-  display:none;
-}
+.menu-toggle { font-size:26px; cursor:pointer; display:none; }
 
-nav {
-  display:flex;
-  gap:20px;
-}
-nav a {
-  text-decoration:none;
-  color:#333;
-  font-weight:bold;
-}
+nav { display:flex; gap:20px; }
+nav a { text-decoration:none; color:#333; font-weight:bold; }
 
 /* MOBILE */
 @media(max-width:768px){
@@ -65,7 +46,7 @@ nav a {
 /* HERO */
 .hero {
   position:relative;
-  height:400px;
+  height:420px;
 }
 
 .hero img {
@@ -87,6 +68,7 @@ nav a {
   left:10%;
   transform:translateY(-50%);
   color:white;
+  text-shadow:0 2px 5px rgba(0,0,0,0.7);
 }
 
 /* BUTTON */
@@ -115,9 +97,7 @@ nav a {
   border-radius:10px;
   overflow:hidden;
   cursor:pointer;
-  transition:0.3s;
 }
-.card:hover { transform:scale(1.03); }
 
 .card img {
   width:100%;
@@ -134,32 +114,32 @@ nav a {
   width:100%;
   height:100%;
   background:rgba(0,0,0,0.8);
+  z-index:2000;
 }
 
 .modal-content {
   background:white;
-  margin:10% auto;
+  margin:5% auto;
   padding:20px;
   width:90%;
   max-width:600px;
+  position:relative;
 }
+
+.close {
+  position:absolute;
+  top:10px;
+  right:15px;
+  font-size:22px;
+  cursor:pointer;
+}
+
 .modal img {
   width:100%;
   margin-top:10px;
 }
 
-/* ANIMACIJA */
-.fade {
-  opacity:0;
-  transform:translateY(30px);
-  transition:1s;
-}
-.fade.show {
-  opacity:1;
-  transform:translateY(0);
-}
-
-/* FLOAT BUTTONS */
+/* FLOAT */
 .float {
   position:fixed;
   right:15px;
@@ -191,10 +171,7 @@ footer {
 <header>
   <div class="logo">⚡ INTER<span>MONT</span></div>
 
-  <div>
-    <button onclick="toggleDark()">🌙</button>
-    <span class="menu-toggle" onclick="toggleMenu()">☰</span>
-  </div>
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
 
   <nav id="menu">
     <a href="#">Početna</a>
@@ -207,7 +184,7 @@ footer {
 
 <!-- HERO -->
 <div class="hero">
-  <img src="https://images.unsplash.com/photo-1581092921461-eab62e97a780">
+  <img src="https://picsum.photos/1200/800?random=1">
   <div class="overlay"></div>
 
   <div class="hero-content">
@@ -221,23 +198,23 @@ footer {
 </div>
 
 <!-- USLUGE -->
-<section id="usluge" class="section fade">
+<section id="usluge" class="section">
 <h2>Usluge</h2>
 
 <div class="cards">
 
 <div class="card" onclick="openModal('kuca')">
-<img src="https://images.unsplash.com/photo-1581091215367-59ab6b3f6e0f">
+<img src="https://picsum.photos/400/300?random=2">
 <h3>Kućne instalacije</h3>
 </div>
 
 <div class="card" onclick="openModal('kvar')">
-<img src="https://images.unsplash.com/photo-1603791440384-56cd371ee9a7">
+<img src="https://picsum.photos/400/300?random=3">
 <h3>Popravke kvarova</h3>
 </div>
 
 <div class="card" onclick="openModal('led')">
-<img src="https://images.unsplash.com/photo-1509395176047-4a66953fd231">
+<img src="https://picsum.photos/400/300?random=4">
 <h3>LED rasvjeta</h3>
 </div>
 
@@ -245,22 +222,25 @@ footer {
 </section>
 
 <!-- MODAL -->
-<div id="modal" class="modal" onclick="closeModal()">
-  <div class="modal-content" id="modalContent"></div>
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">✖</span>
+    <div id="modalContent"></div>
+  </div>
 </div>
 
 <!-- KONTAKT -->
-<section id="kontakt" class="section fade">
+<section id="kontakt" class="section">
 <h2>Kontakt</h2>
 <p>+386 64 139 333</p>
 </section>
 
-<section id="lokacija" class="section fade">
+<section id="lokacija" class="section">
 <h2>Lokacija</h2>
 <iframe src="https://maps.google.com/maps?q=Ptuj&t=&z=13&ie=UTF8&iwloc=&output=embed" width="100%" height="250"></iframe>
 </section>
 
-<section id="radnici" class="section fade">
+<section id="radnici" class="section">
 <h2>Radnici</h2>
 <p>Profesionalni tim električara</p>
 </section>
@@ -278,33 +258,19 @@ function toggleMenu(){
   document.getElementById("menu").classList.toggle("active");
 }
 
-function toggleDark(){
-  document.body.classList.toggle("dark");
-}
-
 function openModal(type){
   let content = "";
 
   if(type==="kuca"){
-    content = `
-    <h2>Kućne instalacije</h2>
-    <img src="https://images.unsplash.com/photo-1581091215367-59ab6b3f6e0f">
-    <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4">
-    `;
+    content = "<h2>Kućne instalacije</h2><img src='https://picsum.photos/500/300?random=5'><img src='https://picsum.photos/500/300?random=6'>";
   }
 
   if(type==="kvar"){
-    content = `
-    <h2>Popravke kvarova</h2>
-    <img src="https://images.unsplash.com/photo-1603791440384-56cd371ee9a7">
-    `;
+    content = "<h2>Popravke kvarova</h2><img src='https://picsum.photos/500/300?random=7'>";
   }
 
   if(type==="led"){
-    content = `
-    <h2>LED rasvjeta</h2>
-    <img src="https://images.unsplash.com/photo-1509395176047-4a66953fd231">
-    `;
+    content = "<h2>LED rasvjeta</h2><img src='https://picsum.photos/500/300?random=8'>";
   }
 
   document.getElementById("modalContent").innerHTML = content;
@@ -314,18 +280,6 @@ function openModal(type){
 function closeModal(){
   document.getElementById("modal").style.display="none";
 }
-
-/* ANIMACIJA */
-let faders = document.querySelectorAll(".fade");
-
-window.addEventListener("scroll", () => {
-  faders.forEach(el => {
-    let top = el.getBoundingClientRect().top;
-    if(top < window.innerHeight - 50){
-      el.classList.add("show");
-    }
-  });
-});
 </script>
 
 </body>
