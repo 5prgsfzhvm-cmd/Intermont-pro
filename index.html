@@ -6,38 +6,35 @@
 <title>Intermont</title>
 
 <style>
-body { margin:0; font-family:Arial; }
+body { margin:0; font-family:Arial; background:#f4f6f8; }
 
-/* NAV */
-nav {
+/* HEADER */
+header {
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:15px 20px;
-  background:#0b0f14;
-  color:white;
+  padding:15px 30px;
+  background:white;
+  box-shadow:0 2px 5px rgba(0,0,0,0.1);
 }
 
 .logo {
-  font-size:24px;
+  font-size:26px;
   font-weight:bold;
 }
 .logo span { color:#0a84ff; }
 
-nav ul {
-  list-style:none;
-  display:flex;
-  gap:20px;
-}
 nav a {
-  color:white;
+  margin:0 15px;
   text-decoration:none;
+  color:#333;
+  font-weight:bold;
 }
 
-/* SLIDER */
-.slider {
+/* HERO */
+.hero {
   position:relative;
-  height:400px;
+  height:450px;
   overflow:hidden;
 }
 
@@ -48,10 +45,7 @@ nav a {
   opacity:0;
   transition:1s;
 }
-
-.slide.active {
-  opacity:1;
-}
+.slide.active { opacity:1; }
 
 .slide img {
   width:100%;
@@ -59,56 +53,70 @@ nav a {
   object-fit:cover;
 }
 
-/* overlay da tekst bude citljiv */
+/* overlay */
 .overlay {
   position:absolute;
   width:100%;
   height:100%;
-  background:rgba(0,0,0,0.5);
-  top:0;
-  left:0;
+  background:rgba(0,0,0,0.55);
 }
 
-.hero-text {
+/* TEXT LEFT */
+.hero-content {
   position:absolute;
   top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
+  left:10%;
+  transform:translateY(-50%);
   color:white;
-  text-align:center;
+  max-width:500px;
 }
 
-.hero-text h1 {
-  font-size:32px;
+.hero-content h1 {
+  font-size:40px;
   margin-bottom:10px;
 }
 
-.hero-text p {
+.hero-content p {
   margin:5px 0;
 }
 
+/* BUTTONS */
+.btn {
+  display:inline-block;
+  margin-top:15px;
+  padding:12px 20px;
+  border-radius:8px;
+  text-decoration:none;
+  color:white;
+  font-weight:bold;
+}
+
+.call { background:#0a84ff; }
+.whatsapp { background:#25D366; }
+
+/* CARDS */
 .section {
-  padding:40px 20px;
+  padding:50px 20px;
   max-width:1100px;
   margin:auto;
 }
 
 .cards {
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:20px;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:25px;
 }
 
 .card {
-  background:#fff;
-  border-radius:10px;
+  background:white;
+  border-radius:12px;
   overflow:hidden;
-  box-shadow:0 5px 10px rgba(0,0,0,0.1);
+  box-shadow:0 5px 15px rgba(0,0,0,0.1);
 }
 
 .card img {
   width:100%;
-  height:180px;
+  height:200px;
   object-fit:cover;
 }
 
@@ -117,29 +125,28 @@ nav a {
 }
 
 footer {
+  text-align:center;
+  padding:20px;
   background:#0b0f14;
   color:#aaa;
-  text-align:center;
-  padding:15px;
 }
 </style>
-
 </head>
 
 <body>
 
-<nav>
+<header>
   <div class="logo">INTER<span>MONT</span></div>
-  <ul>
-    <li><a href="#">Početna</a></li>
-    <li><a href="#usluge">Usluge</a></li>
-    <li><a href="#kontakt">Kontakt</a></li>
-    <li><a href="#lokacija">Lokacija</a></li>
-    <li><a href="#radnici">Radnici</a></li>
-  </ul>
-</nav>
+  <nav>
+    <a href="#">Početna</a>
+    <a href="#usluge">Usluge</a>
+    <a href="#kontakt">Kontakt</a>
+    <a href="#lokacija">Lokacija</a>
+    <a href="#radnici">Radnici</a>
+  </nav>
+</header>
 
-<div class="slider">
+<div class="hero">
 
   <div class="slide active">
     <img src="https://images.unsplash.com/photo-1581092921461-eab62e97a780">
@@ -155,10 +162,13 @@ footer {
 
   <div class="overlay"></div>
 
-  <div class="hero-text">
+  <div class="hero-content">
     <h1>Profesionalne elektro usluge</h1>
-    <p>Intermont – 5 godina iskustva</p>
-    <p style="font-size:18px;"><b>Direktor: Nikola Stošić</b></p>
+    <p>5 godina iskustva – brzo i pouzdano</p>
+    <p><b>Direktor: Nikola Stošić</b></p>
+
+    <a href="tel:+38664139333" class="btn call">Pozovi</a>
+    <a href="https://wa.me/38664139333" class="btn whatsapp">WhatsApp</a>
   </div>
 
 </div>
@@ -172,7 +182,7 @@ footer {
 <img src="https://images.unsplash.com/photo-1581091215367-59ab6b3f6e0f">
 <div class="card-content">
 <h3>Kućne instalacije</h3>
-<p>Kompletna izrada i zamjena</p>
+<p>Kompletna izrada i zamjena instalacija</p>
 </div>
 </div>
 
@@ -188,7 +198,7 @@ footer {
 <img src="https://images.unsplash.com/photo-1509395176047-4a66953fd231">
 <div class="card-content">
 <h3>LED rasvjeta</h3>
-<p>Moderna rješenja</p>
+<p>Moderna i štedljiva rješenja</p>
 </div>
 </div>
 
